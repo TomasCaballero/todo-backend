@@ -41,4 +41,10 @@ public class TareaControlador {
         TareaDto tarea = tareaServidor.modificarTareaPorId(id,tareaNueva);
         return ResponseEntity.ok(tarea);
     }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<String> eliminarTarea(@PathVariable("id") Long id){
+        tareaServidor.eliminarTareaPorId(id);
+        return ResponseEntity.ok("Se elimino la tarea correctamente");
+    }
 }

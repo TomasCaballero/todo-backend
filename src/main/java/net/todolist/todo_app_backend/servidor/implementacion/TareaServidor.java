@@ -51,4 +51,10 @@ public class TareaServidor implements EntityServidor<TareaDto> {
         return TareaMapper.toTareaDto(tareaModificada);
     }
 
+    public void eliminarTareaPorId(Long id){
+        Tarea tareaBuscada = tareaRepositorio.findById(id)
+                .orElseThrow(()-> new ResourceNotFoundException("No existe tarea con id: "+id));
+        tareaRepositorio.deleteById(id);
+    }
+
 }

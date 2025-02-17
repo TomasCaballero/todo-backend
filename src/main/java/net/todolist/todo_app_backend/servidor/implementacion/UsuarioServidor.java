@@ -2,6 +2,7 @@ package net.todolist.todo_app_backend.servidor.implementacion;
 
 import lombok.AllArgsConstructor;
 import net.todolist.todo_app_backend.dto.EntityDto;
+import net.todolist.todo_app_backend.dto.TareaDto;
 import net.todolist.todo_app_backend.dto.UsuarioDto;
 import net.todolist.todo_app_backend.entity.Usuario;
 import net.todolist.todo_app_backend.exception.ResourceNotFoundException;
@@ -25,27 +26,16 @@ public class UsuarioServidor implements EntityServidor<UsuarioDto> {
     @Autowired
     private UsuarioRepositorio usuarioRepositorio;
 
-//    @Override
-//    public UsuarioDto crear(UsuarioDto entityDto) {
-//        Usuario usuario = UsuarioMapper.toUsuario(entityDto);
-//        Usuario usuarioGuardado = usuarioRepositorio.save(usuario);
-//        return UsuarioMapper.toUsuarioDto(usuarioGuardado);
-//    }
-
     @Override
     public UsuarioDto crear(UsuarioDto entityDto) {
-        // Validar si ya existe un usuario con el mismo email
         Optional<Usuario> existingUser = usuarioRepositorio.findByEmail(entityDto.getEmail());
         if (existingUser.isPresent()) {
-            // Si existe, lanzar una excepción con un mensaje adecuado
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Ya existe un usuario con ese email");
         }
 
-        // Si no existe, crear el nuevo usuario
         Usuario usuario = UsuarioMapper.toUsuario(entityDto);
         Usuario usuarioGuardado = usuarioRepositorio.save(usuario);
 
-        // Convertir el entity a DTO y devolverlo
         return UsuarioMapper.toUsuarioDto(usuarioGuardado);
     }
 
@@ -63,5 +53,4 @@ public class UsuarioServidor implements EntityServidor<UsuarioDto> {
         return usuarios.stream().map((usuario -> UsuarioMapper.toUsuarioDto(usuario)))
                 .collect(Collectors.toList());
     }
-
 }
