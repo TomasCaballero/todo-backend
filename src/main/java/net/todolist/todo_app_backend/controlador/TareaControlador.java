@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @AllArgsConstructor
 @RestController
 @RequestMapping("/api/tareas")
@@ -26,5 +28,11 @@ public class TareaControlador {
     public ResponseEntity<TareaDto> obtenerTareaPorId(@PathVariable("id")Long id){
         TareaDto tareaEncontrada = tareaServidor.obtenerPorId(id);
         return ResponseEntity.ok(tareaEncontrada);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<TareaDto>> obtenerTodasLasTareas(){
+        List<TareaDto> tareas = tareaServidor.obtenerTodos();
+        return ResponseEntity.ok(tareas);
     }
 }

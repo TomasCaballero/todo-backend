@@ -10,6 +10,9 @@ import net.todolist.todo_app_backend.servidor.EntityServidor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 
 @Service
 @AllArgsConstructor
@@ -30,5 +33,12 @@ public class TareaServidor implements EntityServidor<TareaDto> {
         Tarea tareaEncontrada = tareaRepositorio.findById(id)
                 .orElseThrow(()-> new ResourceNotFoundException("No existe tarea con id: "+id));
         return TareaMapper.toTareaDto(tareaEncontrada);
+    }
+
+    @Override
+    public List<TareaDto> obtenerTodos() {
+        List<Tarea> tareas = tareaRepositorio.findAll();
+        return tareas.stream().map((tarea -> TareaMapper.toTareaDto(tarea)))
+                .collect(Collectors.toList());
     }
 }

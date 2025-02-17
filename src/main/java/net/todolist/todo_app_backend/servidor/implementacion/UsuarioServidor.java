@@ -11,6 +11,10 @@ import net.todolist.todo_app_backend.servidor.EntityServidor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @AllArgsConstructor
 public class UsuarioServidor implements EntityServidor<UsuarioDto> {
@@ -32,6 +36,13 @@ public class UsuarioServidor implements EntityServidor<UsuarioDto> {
                 .orElseThrow(() -> new ResourceNotFoundException("No existe usuario con id: "+id));
 
         return UsuarioMapper.toUsuarioDto(usuarioEncontrado);
+    }
+
+    @Override
+    public List<UsuarioDto> obtenerTodos() {
+        List<Usuario> usuarios = usuarioRepositorio.findAll();
+        return usuarios.stream().map((usuario -> UsuarioMapper.toUsuarioDto(usuario)))
+                .collect(Collectors.toList());
     }
 
 }

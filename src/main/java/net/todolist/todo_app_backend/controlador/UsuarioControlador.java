@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @AllArgsConstructor
 @RestController
 @RequestMapping("/api/usuarios")
@@ -26,5 +28,11 @@ public class UsuarioControlador {
     public ResponseEntity<UsuarioDto> obtenerUsuarioPorId(@PathVariable("id")Long id){
         UsuarioDto usuarioEncontrado = usuarioServidor.obtenerPorId(id);
         return ResponseEntity.ok(usuarioEncontrado);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<UsuarioDto>> obtenerTodosLosUsuarios(){
+        List<UsuarioDto> usuarios = usuarioServidor.obtenerTodos();
+        return ResponseEntity.ok(usuarios);
     }
 }
