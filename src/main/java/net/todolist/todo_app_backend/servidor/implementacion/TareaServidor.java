@@ -41,4 +41,14 @@ public class TareaServidor implements EntityServidor<TareaDto> {
         return tareas.stream().map((tarea -> TareaMapper.toTareaDto(tarea)))
                 .collect(Collectors.toList());
     }
+
+    public TareaDto modificarTareaPorId(Long id,TareaDto tareaDto){
+        Tarea tareaAModificar = tareaRepositorio.findById(id)
+                .orElseThrow(()-> new ResourceNotFoundException("No existe tarea con id: "+id));
+        tareaAModificar.setTitulo(tareaDto.getTitulo());
+        tareaAModificar.setContenido(tareaDto.getContenido());
+        Tarea tareaModificada = tareaRepositorio.save(tareaAModificar);
+        return TareaMapper.toTareaDto(tareaModificada);
+    }
+
 }

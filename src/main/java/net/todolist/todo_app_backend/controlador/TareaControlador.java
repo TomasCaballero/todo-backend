@@ -35,4 +35,10 @@ public class TareaControlador {
         List<TareaDto> tareas = tareaServidor.obtenerTodos();
         return ResponseEntity.ok(tareas);
     }
+
+    @PutMapping("{id}")
+    public ResponseEntity<TareaDto> modificarTarea(@PathVariable("id") Long id,@RequestBody TareaDto tareaNueva){
+        TareaDto tarea = tareaServidor.modificarTareaPorId(id,tareaNueva);
+        return ResponseEntity.ok(tarea);
+    }
 }
