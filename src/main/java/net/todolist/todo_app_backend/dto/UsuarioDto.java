@@ -13,7 +13,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class UsuarioDto {
+public class UsuarioDto extends EntityDto{
     private Long id;
     private String nombreUsuario;
     private String email;

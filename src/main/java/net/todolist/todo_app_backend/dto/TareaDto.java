@@ -10,7 +10,7 @@ import net.todolist.todo_app_backend.entity.Usuario;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class TareaDto {
+public class TareaDto extends EntityDto{
     private Long id;
     private Usuario usuario;
     private String titulo;
