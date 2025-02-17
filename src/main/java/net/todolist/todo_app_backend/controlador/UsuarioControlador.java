@@ -6,10 +6,7 @@ import net.todolist.todo_app_backend.servidor.implementacion.UsuarioServidor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @AllArgsConstructor
 @RestController
@@ -23,5 +20,11 @@ public class UsuarioControlador {
     public ResponseEntity<UsuarioDto> crearUsuario(@RequestBody UsuarioDto usuarioDto){
         UsuarioDto usuarioGuardad = usuarioServidor.crear(usuarioDto);
         return new ResponseEntity<>(usuarioGuardad, HttpStatus.CREATED);
+    }
+
+    @GetMapping("{id}")
+    public ResponseEntity<UsuarioDto> obtenerUsuarioPorId(@PathVariable("id")Long id){
+        UsuarioDto usuarioEncontrado = usuarioServidor.obtenerPorId(id);
+        return ResponseEntity.ok(usuarioEncontrado);
     }
 }
