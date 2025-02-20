@@ -1,0 +1,16 @@
+net\todolist\todo_app_backend\mapper\TareaMapper.class
+net\todolist\todo_app_backend\entity\Usuario.class
+net\todolist\todo_app_backend\mapper\UsuarioMapper.class
+net\todolist\todo_app_backend\dto\EntityDto.class
+net\todolist\todo_app_backend\controlador\TareaControlador.class
+net\todolist\todo_app_backend\dto\TareaDto.class
+net\todolist\todo_app_backend\repositorio\UsuarioRepositorio.class
+net\todolist\todo_app_backend\entity\Tarea.class
+net\todolist\todo_app_backend\TodoAppBackendApplication.class
+net\todolist\todo_app_backend\servidor\implementacion\TareaServidor.class
+net\todolist\todo_app_backend\servidor\EntityServidor.class
+net\todolist\todo_app_backend\exception\ResourceNotFoundException.class
+net\todolist\todo_app_backend\controlador\UsuarioControlador.class
+net\todolist\todo_app_backend\servidor\implementacion\UsuarioServidor.class
+net\todolist\todo_app_backend\repositorio\TareaRepositorio.class
+net\todolist\todo_app_backend\dto\UsuarioDto.class
